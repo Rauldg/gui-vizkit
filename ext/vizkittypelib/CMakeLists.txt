@@ -5,6 +5,12 @@ set(RUBY_USE_PROJECT_INSTALL_PREFIX TRUE)
 include(RockRuby)
 
 find_package(Gem COMPONENTS rice)
+if(NOT Gem)
+    set(GEM_OS_PKG ON)
+    find_package(gem COMPONENTS rice)
+endif()
+
+
 pkg_check_modules(TYPELIB "rtt_typelib-${OROCOS_TARGET}")
 pkg_check_modules(TYPELIBRUBY "typelib_ruby")
 pkg_check_modules(QT "QtCore" REQUIRED)
